@@ -15,9 +15,9 @@ def runTrain():
     print 'done'
 
 def runTest():
-    of, vel, pos, DCM, img1, img2 = getMergedData([0])
+    of, vel, pos, DCM, img1, img2 = getMergedData([5])
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_sg.h5')
+    m.load_weights('Weights/temp_sg_2.h5')
     pred_vel_list = []
 
 
@@ -47,8 +47,8 @@ def runTest():
 
     pred_pos = vel2pos(pred_vel)
     plt.figure()
-    plt.plot(pred_pos[:,0], pred_pos[:,2], 'bo')
     plt.plot(pos[:,0], pos[:,2], 'ro')
+    plt.plot(pred_pos[:,0], pred_pos[:,2], 'b.')
     plt.show()
 
 
