@@ -15,11 +15,10 @@ def runTrain():
     print 'done'
 
 def runTest():
-    of, vel, pos, DCM, img1, img2 = getMergedData([5])
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_sg_2.h5')
+    m.load_weights('Weights/temp_mu.h5')
+    of, vel, pos, DCM, img1, img2 = getMergedData([5])
     pred_vel_list = []
-
 
     i = 0
     while i < img1.shape[0]:
