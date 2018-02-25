@@ -21,8 +21,8 @@ def getCNN(h,w):
     conv4_1 = Conv2D(512,  (3, 3), name = 'conv4_1', strides = 2, padding='same', activation=LeakyReLU())(conv4)
     conv5 =   Conv2D(512,  (3, 3), name = 'conv5',   strides = 1, padding='same', activation=LeakyReLU())(conv4_1)
     conv5_1 = Conv2D(512,  (3, 3), name = 'conv5_1', strides = 2, padding='same', activation=LeakyReLU())(conv5)
-    flow =    Conv2D(100,  (1, 1), name = 'flow2',   strides = 1, padding='same', activation=LeakyReLU())(conv5_1)
-    flow =    Conv2D(10,   (1, 1), name = 'flow1',   strides = 1, padding='same', activation=LeakyReLU())(flow)
+    flow =    Conv2D(100,  (1, 1), name = 'flow2',   strides = 1, padding='same', activation='tanh')(conv5_1)
+    #flow =    Conv2D(10,   (1, 1), name = 'flow1',   strides = 1, padding='same', activation=LeakyReLU())(flow)
     flow =    Conv2D(2,    (1, 1), name = 'flow0',   strides = 1, padding='same', activation='linear')(flow)
 
     flat = Flatten()(flow)
@@ -37,7 +37,7 @@ def getCNN(h,w):
 
     finalOut = [flow, vel]
     model = Model(input=[input0, input1, input2], output=finalOut)
-    rms = RMSprop(lr=0.001, rho=0.9, epsilon=0.2, decay=0.0)
+    rms = RMSprop(lr=0.01, rho=0.9, epsilon=0.2, decay=0.0)
     model.compile(loss='mae', optimizer=rms, metrics=['mse'])
     model.summary()
     return model
