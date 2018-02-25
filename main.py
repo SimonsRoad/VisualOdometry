@@ -4,19 +4,26 @@ from Model import *
 import time
 import sys
 import cv2
+from keras.callbacks import EarlyStopping
+import pickle
 
 def runTrain():
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
 
+    dummy = np.zeros_like(vel)
+    vel = np.concatenate((dummy, vel), axis = 1)
+
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_sg_red.h5')
-    m.fit([img1, img2, DCM], [of, vel], epochs=10, batch_size=10, verbose=1,  shuffle=False)
-    m.save_weights('Weights/temp_sg_red.h5')
+    m.load_weights('Weights/temp_sg_try2.h5')
+    earlystop = EarlyStopping(monitor='dense_4_loss', min_delta=10**-6, patience=5, verbose=1, mode='auto')
+    callbacks_list = [earlystop]
+    history = m.fit([img1, img2, DCM], [of, vel], epochs=840, batch_size=10, verbose=1,  shuffle=True, callbacks=callbacks_list)
+    m.save_weights('Weights/temp_sg_try2.h5')
     print 'done'
 
 def runTest():
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_sg_red.h5')
+    m.load_weights('Weights/temp_sg_try2.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
     pred_vel_list = []
 
@@ -33,7 +40,9 @@ def runTest():
             print i
 
     pred_vel = np.array(pred_vel_list)
-    pred_vel = np.reshape(pred_vel, (vel.shape[0], vel.shape[1]))
+    print pred_vel.shape
+    pred_vel = np.reshape(pred_vel, (vel.shape[0], 6))
+    pred_vel = pred_vel[:,3:]
     diff = vel-pred_vel
 
     print pred_vel.shape
