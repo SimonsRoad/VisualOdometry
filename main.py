@@ -8,8 +8,8 @@ import cv2
 def runTrain():
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
 
-    print img1.dtype
-    print img1.dtype
+    dummy = np.zeros_like(vel)
+    vel = np.concatenate((dummy, vel), axis = 1)
 
     m = getCNN(320, 1152)
     #m.load_weights('Weights/temp_sg.h5')
@@ -19,8 +19,8 @@ def runTrain():
 
 def runTest():
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_mu.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([5])
+    m.load_weights('Weights/temp_sg_red.h5')
+    of, vel, pos, DCM, img1, img2 = getMergedData([1])
     pred_vel_list = []
 
     i = 0
