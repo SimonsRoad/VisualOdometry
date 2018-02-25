@@ -8,13 +8,10 @@ import cv2
 def runTrain():
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
 
-    dummy = np.zeros_like(vel)
-    vel = np.concatenate((dummy, vel), axis = 1)
-
     m = getCNN(320, 1152)
-    #m.load_weights('Weights/temp_sg.h5')
-    m.fit([img1, img2, DCM], [of, vel], epochs=20, batch_size=10, verbose=1,  shuffle=False)
-    m.save_weights('Weights/temp_sg_try2.h5')
+    m.load_weights('Weights/temp_sg_red.h5')
+    m.fit([img1, img2, DCM], [of, vel], epochs=10, batch_size=10, verbose=1,  shuffle=False)
+    m.save_weights('Weights/temp_sg_red.h5')
     print 'done'
 
 def runTest():
@@ -37,7 +34,6 @@ def runTest():
 
     pred_vel = np.array(pred_vel_list)
     pred_vel = np.reshape(pred_vel, (vel.shape[0], vel.shape[1]))
-    pred_vel = pred_vel[:,3:]
     diff = vel-pred_vel
 
     print pred_vel.shape
