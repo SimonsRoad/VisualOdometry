@@ -23,7 +23,7 @@ def runTrain():
 
 def runTest():
     m = getCNN(320, 1152)
-    m.load_weights('Weights/temp_sg_try2.h5')
+    m.load_weights('Weights/temp_vq.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
     pred_vel_list = []
 
