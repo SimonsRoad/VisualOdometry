@@ -37,7 +37,7 @@ def getCNN(h,w):
 
     finalOut = [flow, vel]
     model = Model(input=[input0, input1, input2], output=finalOut)
-    rms = RMSprop(lr=0.001, rho=0.9, epsilon=0.2, decay=0.0)
+    rms = RMSprop(lr=0.005, rho=0.9, epsilon=0.2, decay=0.0)
     model.compile(loss='mae', optimizer=rms, metrics=['mse'])
     model.summary()
     return model

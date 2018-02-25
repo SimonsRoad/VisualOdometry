@@ -6,7 +6,7 @@ import sys
 import cv2
 
 def runTrain():
-    of, vel, DCM, img1, img2 = getMergedData([0])
+    of, vel, pos, DCM, img1, img2 = getMergedData([0])
 
     m = getCNN(320, 1152)
     m.load_weights('Weights/temp_sg.h5')
