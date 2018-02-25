@@ -11,7 +11,7 @@ def runTrain():
     m = getCNN(320, 1152)
     m.load_weights('Weights/temp_sg.h5')
     m.fit([img1, img2, DCM], [of, vel], epochs=20, batch_size=10, verbose=1,  shuffle=False)
-    m.save_weights('Weights/temp_sg.h5')
+    m.save_weights('Weights/temp_sg_2.h5')
     print 'done'
 
 def runTest():
