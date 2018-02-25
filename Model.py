@@ -80,7 +80,7 @@ def getCNN(h,w):
 
     finalOut = [flow, vel]
     model = Model(input=[input0, input1, input2], output=finalOut)
-    rms = RMSprop(lr=0.001, rho=0.9, epsilon=0.2, decay=0.1)
+    rms = RMSprop(lr=0.01, rho=0.9, epsilon=0.2, decay=0.1)
     model.compile(loss=customMSE(), optimizer=rms, metrics=['mae'])
     model.summary()
     return model
