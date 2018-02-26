@@ -8,11 +8,11 @@ from keras.callbacks import EarlyStopping
 import pickle
 
 def runTrainCNN():
-    of, vel, pos, DCM, img1, img2 = getMergedData([7])
+    of, vel, pos, DCM, img1, img2 = getMergedData([1])
     fn = getCNN(320, 1152)
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
-    history = fn.fit([img1, img2], of, epochs=20, batch_size=10, verbose=1,  shuffle=True, callbacks=callbacks_list)
+    history = fn.fit([img1, img2], of, epochs=20, batch_size=35, verbose=1,  shuffle=True, callbacks=callbacks_list)
     fn.save_weights('Weights/b2_light_cnn.h5')
     print 'done'
 
