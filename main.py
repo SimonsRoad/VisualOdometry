@@ -21,7 +21,7 @@ def runTrain():
 def runTest():
     m = getCNN(320, 1152)
     m.load_weights('Weights/temp_v.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([9])
+    of, vel, pos, DCM, img1, img2 = getMergedData([7])
     pred_vel_list = []
 
     i = 0
@@ -38,8 +38,8 @@ def runTest():
 
     pred_vel = np.array(pred_vel_list)
     print pred_vel.shape
-    pred_vel = np.reshape(pred_vel, (vel.shape[0], 6))
-    pred_vel = pred_vel[:,3:]
+    pred_vel = np.reshape(pred_vel, (vel.shape[0], 3))
+    #pred_vel = pred_vel[:,3:]
     diff = vel-pred_vel
 
     print pred_vel.shape

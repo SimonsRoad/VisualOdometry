@@ -73,8 +73,6 @@ def getMergedData(seqList):
 
 if __name__ == '__main__':
     of, vel, DCM, img1, img2 = getMergedData([2])
-
-
     print of.shape
     print vel.shape
     print DCM.shape
