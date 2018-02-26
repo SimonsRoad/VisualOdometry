@@ -32,7 +32,7 @@ def runTrainModel():
 def runTest():
     m = getModel(320, 1152)
     m.load_weights('Weights/temp_sg_final.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([1])
+    of, vel, pos, DCM, img1, img2 = getMergedData([7])
     pred_vel_list = []
 
     i = 0
@@ -55,6 +55,14 @@ def runTest():
 
     print pred_vel.shape
     print np.mean(diff)
+
+    pred_pos = pos2vel(pred_vel)
+    rmse = np.sqrt((np.asarray((np.subtract(pred_vel, vel))) ** 2).mean())
+    print 'rmse=%f' %(rmse)
+    rmse = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
+    print 'rmse=%f' %(rmse)
+
+
     plt.figure()
     plt.plot(vel, 'r')
     plt.plot(pred_vel, 'b')
