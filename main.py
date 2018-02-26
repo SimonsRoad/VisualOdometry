@@ -32,7 +32,7 @@ def runTrainModel():
 def runTest():
     m = getModel(320, 1152)
     m.load_weights('Weights/temp_sg_final.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([7])
+    of, vel, pos, DCM, img1, img2 = getMergedData([1])
     pred_vel_list = []
 
     i = 0
