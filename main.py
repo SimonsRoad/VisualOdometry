@@ -10,9 +10,6 @@ import pickle
 def runTrain():
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
 
-    dummy = np.zeros_like(vel)
-    vel = np.concatenate((dummy, vel), axis = 1)
-
     m = getCNN(320, 1152)
     m.load_weights('Weights/temp_sg_try2.h5')
     earlystop = EarlyStopping(monitor='dense_4_loss', min_delta=10**-6, patience=5, verbose=1, mode='auto')

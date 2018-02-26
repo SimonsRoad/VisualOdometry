@@ -85,7 +85,7 @@ def getCNN(h,w):
     input2 =  Input(shape=(9,))
     merged =  concatenate([input2, dense], axis=1)
     dense =   Dense(10,  activation=LeakyReLU())(merged)
-    vel =     Dense(6,   activation='linear')(dense)
+    vel =     Dense(3,   activation='linear')(dense)
 
     model = Model(inputs=[input0, input1, input2], outputs=[flow, vel])
     rms = RMSprop(lr=0.001, rho=0.9, epsilon=10**-6, decay=0.0)
