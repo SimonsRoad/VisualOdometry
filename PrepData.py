@@ -43,8 +43,7 @@ def getData(seq):
     return of, vel, pos, DCM
 
 def getImage(seq):
-    imgList = np.load('Data/Images/seq' + str(seq) + '.npy')
-    imgList = imgList/255.0 - 0.5
+    imgList = (np.load('Data/Images/seq' + str(seq) + '.npy'))/255.0 - 0.5
     img1 = imgList[:-1,:,:,:]
     img2 = imgList[1:,:,:,:]
     return img1, img2
