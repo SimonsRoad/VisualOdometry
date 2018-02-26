@@ -7,31 +7,28 @@ import cv2
 from keras.callbacks import EarlyStopping
 import pickle
 
-def runTrainFN():
+def runTrainCNN():
     of, vel, pos, DCM, img1, img2 = getMergedData([7])
-    fn = getFN(320, 1152)
+    fn = getCNN(320, 1152)
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
     history = fn.fit([img1, img2], of, epochs=20, batch_size=10, verbose=1,  shuffle=True, callbacks=callbacks_list)
-    fn.save_weights('Weights/temp_sg_try4.h5')
+    fn.save_weights('Weights/b2_light_cnn.h5')
     print 'done'
 
 def runTrainModel():
     m = getModel(320, 1152)
-    m.load_weights('Weights/temp_sg_final.h5')
+    #m.load_weights('Weights/b2_light_final.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([7])
-
-
     earlystop = EarlyStopping(monitor='dense_6_loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
-
     history = m.fit([img1, img2, DCM], [of, vel], epochs=20, batch_size=10, verbose=1,  shuffle=True, callbacks=callbacks_list)
-    m.save_weights('Weights/temp_sg_final.h5')
+    m.save_weights('Weights/b2_light_final.h5')
     print 'done'
 
 def runTest():
     m = getModel(320, 1152)
-    m.load_weights('Weights/temp_sg_final.h5')
+    m.load_weights('Weights/b2_light_final.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
     pred_vel_list = []
 
@@ -79,7 +76,7 @@ def runTest():
 if __name__=='__main__':
     type = int(sys.argv[1])
     if type==0:
-        runTrainFN()
+        runTrainCNN()
     elif type==1:
         runTrainModel()
     elif type==2:

@@ -4,7 +4,7 @@ from keras.layers.advanced_activations import LeakyReLU, PReLU, ELU
 import keras.backend as K
 from keras.optimizers import RMSprop, Adam
 
-def getFN(h,w):
+def getCNN(h,w):
     input0 = Input(shape=(h, w, 3))
     input1 = Input(shape=(h, w, 3))
     input = concatenate([input0, input1], axis=3)
@@ -18,7 +18,7 @@ def getFN(h,w):
     fn = Model(inputs=[input0, input1], outputs=flow)
     rms = RMSprop(lr=10**-3, rho=0.9, epsilon=10**-6, decay=0.0)
     fn.compile(loss='mae', optimizer=rms)
-    fn.load_weights('Weights/temp_sg_try4.h5')
+    fn.load_weights('Weights/b2_light_cnn.h5')
     return fn
 
 def getModel(h,w):
@@ -33,7 +33,7 @@ def getModel(h,w):
     conv6 =   Conv2D(100,  (1, 1), name = 'flow2',   strides = 1, padding='same', activation='tanh')(conv5)
     flow =    Conv2D(2,    (1, 1), name = 'flow0',   strides = 1, padding='same', activation='linear')(conv6)
     fn = Model(inputs=[input0, input1], outputs=flow)
-    fn.load_weights('Weights/temp_sg_try4.h5')
+    fn.load_weights('Weights/b2_light_cnn.h5')
 
     input2 =  Input(shape=(9,))
     flat =    Flatten()(flow)
