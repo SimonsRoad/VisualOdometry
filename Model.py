@@ -16,7 +16,7 @@ def getCNN(h,w):
     conv6 =   Conv2D(100,  (1, 1), name = 'flow2',   strides = 1, padding='same', activation='tanh')(conv5)
     flow =    Conv2D(2,    (1, 1), name = 'flow0',   strides = 1, padding='same', activation='linear')(conv6)
     fn = Model(inputs=[input0, input1], outputs=flow)
-    rms = RMSprop(lr=10**-3, rho=0.9, epsilon=10**-6, decay=0.0)
+    rms = RMSprop(lr=2*10**-4, rho=0.9, epsilon=10**-6, decay=0.0)
     fn.compile(loss='mae', optimizer=rms)
     fn.load_weights('Weights/b2_light_cnn.h5')
     return fn

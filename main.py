@@ -12,24 +12,24 @@ def runTrainCNN():
     fn = getCNN(320, 1152)
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
-    history = fn.fit([img1, img2], of, epochs=20, batch_size=40, verbose=1,  shuffle=True, callbacks=callbacks_list)
+    history = fn.fit([img1, img2], of, epochs=20, batch_size=32, verbose=1,  shuffle=True, callbacks=callbacks_list)
     fn.save_weights('Weights/b2_light_cnn.h5')
     print 'done'
 
 def runTrainModel():
     m = getModel(320, 1152)
-    #m.load_weights('Weights/b2_light_final.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([4])
+    m.load_weights('Weights/b2_light_final.h5')
+    of, vel, pos, DCM, img1, img2 = getMergedData([10])
     earlystop = EarlyStopping(monitor='dense_6_loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
-    history = m.fit([img1, img2, DCM], [of, vel], epochs=20, batch_size=40, verbose=1,  shuffle=True, callbacks=callbacks_list)
+    history = m.fit([img1, img2, DCM], [of, vel], epochs=20, batch_size=32, verbose=1,  shuffle=True, callbacks=callbacks_list)
     m.save_weights('Weights/b2_light_final.h5')
     print 'done'
 
 def runTest():
     m = getModel(320, 1152)
     m.load_weights('Weights/b2_light_final.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([4])
+    of, vel, pos, DCM, img1, img2 = getMergedData([10])
     pred_vel_list = []
 
     i = 0
