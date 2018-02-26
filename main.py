@@ -42,6 +42,12 @@ def runTest():
     #pred_vel = pred_vel[:,3:]
     diff = vel-pred_vel
 
+    pred_pos = pos2vel(pred_vel)
+    rmse = np.sqrt((np.asarray((np.subtract(pred_vel, vel))) ** 2).mean())
+    print 'rmse=%f' %(rmse)
+    rmse = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
+    print 'rmse=%f' %(rmse)
+
     print pred_vel.shape
     print np.mean(diff)
     plt.figure()
