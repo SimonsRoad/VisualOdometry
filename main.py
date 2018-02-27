@@ -22,9 +22,8 @@ def runTest():
     m = getModel(360, 640)
     m.load_weights('Weights/b3_evenlight.h5')
     #runTestSeq(m,6)
-    for seq in range(0,11):
+    for seq in range(8,11):
         runTestSeq(m,seq)
-
 
 def runTestSeq(m,seq):
     of, vel, pos, DCM, img1, img2 = getMergedData([seq])
@@ -55,14 +54,14 @@ def runTestSeq(m,seq):
     rmse_pos = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
     print 'rmse=%f' %(rmse_pos)
 
-    np.savetxt('seq'+str(seq)+'_vel.txt', pred_vel)
-    np.savetxt('seq'+str(seq)+'_pos.txt', pred_pos)
+    np.savetxt('Results/Pred_Data/seq'+str(seq)+'_vel.txt', pred_vel)
+    np.savetxt('Results/Pred_Data/seq'+str(seq)+'_pos.txt', pred_pos)
 
     fig = plt.figure()
     plt.plot(vel, 'r')
     plt.plot(pred_vel, 'b')
     #plt.show()
-    fig.savefig('Results/seq' + str(seq) + '_vel.png')
+    fig.savefig('Results/Images/seq' + str(seq) + '_vel.png')
 
 
     pred_pos = vel2pos(pred_vel)
@@ -74,7 +73,7 @@ def runTestSeq(m,seq):
     if seq == 6:
         plt.xlim((-50, 50))
     #plt.show()
-    fig.savefig('Results/seq' + str(seq) + '_pos.png')
+    fig.savefig('Results/Images/seq' + str(seq) + '_pos.png')
 
 if __name__=='__main__':
     type = int(sys.argv[1])
