@@ -34,7 +34,8 @@ def getImage(seq, side=0):
     while (index < numFile):
         fName_curr = imgDir + getImgName(index)
         img_curr = cv2.imread(fName_curr)
-        img_curr = cv2.resize(img_curr, (1152,320))
+        img_curr = cv2.resize(img_curr, (640,360))
+        img_curr = np.array(img_curr)
         imgList.append(img_curr)
         index += 1
         if index%100==0:
@@ -48,6 +49,6 @@ def getImage(seq, side=0):
 
 
 if __name__ == '__main__':
-    #getImage(5)
+    #getImage(0)
     for i in range(0,11):
         getImage(i)
