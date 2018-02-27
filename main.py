@@ -21,9 +21,9 @@ def runTrainCNN():
 def runTest():
     m = getModel(360, 640)
     m.load_weights('Weights/b3_evenlight.h5')
-    runTestSeq(m,6)
-    # for seq in range(0,11):
-    #     runTestSeq(m,seq)
+    #runTestSeq(m,6)
+    for seq in range(0,11):
+        runTestSeq(m,seq)
 
 
 def runTestSeq(m,seq):
@@ -50,11 +50,13 @@ def runTestSeq(m,seq):
     print np.mean(diff)
 
     pred_pos = pos2vel(pred_vel)
-    rmse = np.sqrt((np.asarray((np.subtract(pred_vel, vel))) ** 2).mean())
-    print 'rmse=%f' %(rmse)
-    rmse = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
-    print 'rmse=%f' %(rmse)
+    rmse_vel = np.sqrt((np.asarray((np.subtract(pred_vel, vel))) ** 2).mean())
+    print 'rmse=%f' %(rmse_vel)
+    rmse_pos = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
+    print 'rmse=%f' %(rmse_pos)
 
+    np.savetxt('seq'+str(seq)+'_vel.txt', pred_vel)
+    np.savetxt('seq'+str(seq)+'_pos.txt', pred_pos)
 
     fig = plt.figure()
     plt.plot(vel, 'r')
