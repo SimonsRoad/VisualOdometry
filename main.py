@@ -10,12 +10,7 @@ import pickle
 def runTrain():
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
 
-<<<<<<< HEAD
-=======
-    # dummy = np.zeros_like(vel)
-    # vel = np.concatenate((dummy, vel), axis = 1)
 
->>>>>>> b3_evenlight_sg
     m = getCNN(320, 1152)
     m.load_weights('Weights/temp_sg_try3.h5')
     earlystop = EarlyStopping(monitor='dense_4_loss', min_delta=10**-6, patience=5, verbose=1, mode='auto')
@@ -26,13 +21,10 @@ def runTrain():
 
 def runTest():
     m = getCNN(320, 1152)
-<<<<<<< HEAD
-    m.load_weights('Weights/temp_v.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([2])
-=======
+
     m.load_weights('Weights/temp_sg_try3.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([1])
->>>>>>> b3_evenlight_sg
+
     pred_vel_list = []
 
     i = 0
