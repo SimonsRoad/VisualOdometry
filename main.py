@@ -6,6 +6,7 @@ import sys
 import cv2
 from keras.callbacks import EarlyStopping
 import pickle
+import time
 
 def runTrainCNN():
     fn = getModel(360, 640)
@@ -21,9 +22,9 @@ def runTrainCNN():
 def runTest():
     m = getModel(360, 640)
     m.load_weights('Weights/b3_evenlight.h5')
-    #runTestSeq(m,6)
-    for seq in range(8,11):
-        runTestSeq(m,seq)
+    runTestSeq(m,4)
+    # for seq in range(8,11):
+    #     runTestSeq(m,seq)
 
 def runTestSeq(m,seq):
     of, vel, pos, DCM, img1, img2 = getMergedData([seq])
@@ -33,7 +34,10 @@ def runTestSeq(m,seq):
         inputImg1 = img1[i:i+10,:,:,:]
         inputImg2 = img2[i:i+10,:,:,:]
         dcm = DCM[i:i+10,:]
+        start = time.time()
         pred = m.predict([inputImg1, inputImg2, dcm])
+        end = time.time()
+        print 'time elapsed: %f' %(end - start)
         pred_vel_list.append(pred)
         i += 10
         if i%100 == 0:
