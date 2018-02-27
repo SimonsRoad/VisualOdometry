@@ -26,6 +26,5 @@ def getModel(h,w):
     model = Model(inputs=[input0, input1, input2], outputs=vel)
     rms = RMSprop(lr=10**-5, rho=0.9, epsilon=10**-6, decay=0.0)
     model.compile(loss='mae', optimizer=rms)
->>>>>>> b3_evenlight_sg
     model.summary()
     return model
