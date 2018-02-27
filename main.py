@@ -29,6 +29,8 @@ def runTest():
 
 def runTestSeq(m,seq):
     of, vel, pos, DCM, img1, img2 = getMergedData([seq])
+    pred_vel_list = []
+    i = 0
     while i < img1.shape[0]:
         inputImg1 = img1[i:i+10,:,:,:]
         inputImg2 = img2[i:i+10,:,:,:]
