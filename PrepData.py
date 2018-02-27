@@ -73,10 +73,6 @@ def getMergedData(seqList):
 
     print '%d data points are being prepared...' %(totalImgNumber)
 
-<<<<<<< HEAD
-if __name__ == '__main__':
-    of, vel, DCM, img1, img2 = getMergedData([2])
-=======
     imgTotal1 = np.ndarray(shape=(totalImgNumber,360,640,3), dtype='float16')
     imgTotal2 = np.ndarray(shape=(totalImgNumber,360,640,3), dtype='float16')
 
@@ -98,7 +94,7 @@ if __name__ == '__main__':
     start = time.time()
     print 'starting...'
     of, vel, pos, DCM, img1, img2 = getMergedData([1,4])
->>>>>>> b3_evenlight_sg
+
     print of.shape
     print vel.shape
     print DCM.shape
