@@ -8,22 +8,27 @@ from keras.callbacks import EarlyStopping
 import pickle
 
 def runTrainCNN():
-    fn = getModel(320, 1152)
+    fn = getModel(360, 640)
     fn.load_weights('Weights/b3_evenlight.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([7])
+    of, vel, pos, DCM, img1, img2 = getMergedData([0, 2, 6, 4])
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
-    history = fn.fit([img1, img2, DCM], vel, epochs=15, batch_size=32, verbose=1,  shuffle=True, callbacks=callbacks_list)
+    history = fn.fit([img1, img2, DCM], vel, epochs=10, batch_size=32, verbose=1,  shuffle=True, callbacks=callbacks_list)
     fn.save_weights('Weights/b3_evenlight.h5')
     print 'done'
 
 
 def runTest():
-    m = getModel(320, 1152)
+    m = getModel(360, 640)
     m.load_weights('Weights/b3_evenlight.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([7])
-    pred_vel_list = []
+    runTestSeq(m,6)
+    for seq in range(0,11):
+        runTestSeq(m,seq)
 
+
+def runTestSeq(m,seq):
+    of, vel, pos, DCM, img1, img2 = getMergedData([seq])
+    pred_vel_list = []
     i = 0
     while i < img1.shape[0]:
         inputImg1 = img1[i:i+10,:,:,:]
@@ -51,18 +56,23 @@ def runTest():
     print 'rmse=%f' %(rmse)
 
 
-    plt.figure()
+    fig = plt.figure()
     plt.plot(vel, 'r')
     plt.plot(pred_vel, 'b')
-    plt.show()
+    #plt.show()
+    fig.savefig('Results/seq' + str(seq) + '_vel.png')
 
 
     pred_pos = vel2pos(pred_vel)
-    plt.figure()
+    fig = plt.figure()
     plt.plot(pos[:,0], pos[:,2], 'ro')
     plt.plot(pred_pos[:,0], pred_pos[:,2], 'b.')
-    plt.show()
-
+    if seq == 4:
+        plt.xlim((-200, 200))
+    if seq == 6:
+        plt.xlim((-50, 50))
+    #plt.show()
+    fig.savefig('Results/seq' + str(seq) + '_pos.png')
 
 if __name__=='__main__':
     type = int(sys.argv[1])
