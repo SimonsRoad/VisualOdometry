@@ -30,19 +30,23 @@ def runTestSeq(m,seq):
     of, vel, pos, DCM, img1, img2 = getMergedData([seq])
     pred_vel_list = []
     i = 0
+    step = 1
+    timeList = []
     while i < img1.shape[0]:
-        inputImg1 = img1[i:i+10,:,:,:]
-        inputImg2 = img2[i:i+10,:,:,:]
+        inputImg1 = img1[i:i+step,:,:,:]
+        inputImg2 = img2[i:i+step,:,:,:]
         dcm = DCM[i:i+10,:]
         start = time.time()
         pred = m.predict([inputImg1, inputImg2, dcm])
         end = time.time()
-        print 'time elapsed: %f' %(end - start)
+        timeList.append(end-start)
         pred_vel_list.append(pred)
-        i += 10
+        i += step
         if i%100 == 0:
             print i
-
+    meanProcTime = np.array(timeList)
+    meanProcTime = np.mean(meanProcTime)
+    print 'time elapsed: %f' %(meanProcTime)
     pred_vel = np.array(pred_vel_list)
     print pred_vel.shape
     pred_vel = np.reshape(pred_vel, (vel.shape[0], 3))
