@@ -7,6 +7,7 @@ from keras.optimizers import RMSprop, Adam
 def getModel(h,w):
     input0 = Input(shape=(h, w, 3))
     input1 = Input(shape=(h, w, 3))
+
     input =  concatenate([input0, input1], axis=3)
     conv1 =  Conv2D(64,   (3, 3), name = 'conv0',   strides = 2, padding='same', activation=LeakyReLU())(input)
     conv2 =  Conv2D(128,  (3, 3), name = 'conv1',   strides = 2, padding='same', activation=LeakyReLU())(conv1)
