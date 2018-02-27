@@ -8,7 +8,7 @@ from keras.callbacks import EarlyStopping
 import pickle
 
 def runTrainCNN():
-    fn = getModel(360, 640)
+    fn = getModel(360, 640) 
     fn.load_weights('Weights/b3_evenlight.h5')
     of, vel, pos, DCM, img1, img2 = getMergedData([0, 2, 6, 4])
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
