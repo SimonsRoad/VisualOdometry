@@ -6,7 +6,6 @@ import time
 import sys
 from keras.callbacks import EarlyStopping
 import pickle
-from scipy.spatial import distance
 
 def train_vel_cov():
     vel_gt, pos_gt, vel_pr, pos_pr = getMergedData([0, 2, 4, 6])
