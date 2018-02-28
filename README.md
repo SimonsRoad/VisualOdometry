@@ -77,8 +77,8 @@ Yet, if the model is fed with "similar" environement, mse is not too irrational.
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq10_pos.png" width="400">
 </ul>
 
-## Covariance Estimation
-
+## Covariance Estimation Without Correction
+First a few covariance ellipses are plotted. As the time goes, the covariance eventually blows up.
 <ul>
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq0_cov.png" width="400">
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq1_cov.png" width="400">
