@@ -92,3 +92,20 @@ First a few covariance ellipses are plotted. As the time goes, the covariance ev
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq9_cov.png" width="400">
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq10_cov.png" width="400">
 </ul>
+
+
+## Correction Result
+
+<ul>
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr0.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr1.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr2.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr3.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr4.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr5.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr6.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr7.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr8.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr9.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr10.png" width="400">
+</ul>
