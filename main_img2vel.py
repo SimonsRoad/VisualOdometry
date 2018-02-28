@@ -3,7 +3,6 @@ from PrepData import *
 from Model_CNN import *
 import time
 import sys
-import cv2
 from keras.callbacks import EarlyStopping
 import pickle
 import time
