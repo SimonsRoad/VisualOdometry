@@ -93,7 +93,7 @@ def getMergedData(seqList):
 if __name__ == '__main__':
     start = time.time()
     print 'starting...'
-    of, vel, pos, DCM, img1, img2 = getMergedData([1,4])
+    of, vel, pos, DCM, img1, img2 = getMergedData([0,1,2, 4,8])
 
     print of.shape
     print vel.shape
