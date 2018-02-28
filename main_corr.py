@@ -17,18 +17,15 @@ def getSeqInput(x,y, T):
     label = np.concatenate([np.zeros((label.shape[0],3)), label], axis=1)
     return input, label
 
-
 def main():
     T = 20
     vel_gt, pos_gt, vel_pr, pos_pr = getMergedData([0, 2, 4, 6])
     measPos = pos_gt + (np.random.rand(pos_gt.shape[0], 3)-0.5)*2
     predPos = (np.concatenate([np.zeros((1,3)), measPos], axis=0))[0:pos_gt.shape[0]] + vel_pr
 
-
     x = np.concatenate([predPos, measPos], axis=1)/1000
     y = pos_gt/1000
     input, label = getSeqInput(x,y, T)
-
 
     model = getPosQ(input.shape[1:], T)
     model.load_weights('Weights/corrPosQ.h5')
@@ -37,11 +34,9 @@ def main():
     loss_history = history.history["loss"]
 
     #model.save_weights('corrPosQ.h5')
-
     # plt.figure()
     # plt.plot(loss_history)
     # plt.show()
-
     #model.load_weights('corrPosQ.h5')
 def test_quick():
     T = 20
