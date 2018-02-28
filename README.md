@@ -76,3 +76,19 @@ Yet, if the model is fed with "similar" environement, mse is not too irrational.
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq9_pos.png" width="400">
 <img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq10_pos.png" width="400">
 </ul>
+
+## Covariance Estimation
+
+<ul>
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq0_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq1_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq2_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq3_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq4_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq5_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq6_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq7_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq8_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq9_cov.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq10_cov.png" width="400">
+</ul>

@@ -18,13 +18,13 @@ def vel2pos(vel):
     return pos
 
 def readAttPosData(num):
-        fName = 'Data/poses/'
-        fName = fName + ( '0' + str(num) if num < 10 else str(num)) + '.txt'
-        data = pd.read_csv(fName, sep=" ", header=None)
-        data = data.as_matrix()
-        DCM = data[:, [0,1,2, 4,5,6, 8,9,10]]
-        pos = data[:,[3, 7, 11]]
-        return DCM, pos, pos2vel(pos)
+    fName = 'Data/poses/'
+    fName = fName + ( '0' + str(num) if num < 10 else str(num)) + '.txt'
+    data = pd.read_csv(fName, sep=" ", header=None)
+    data = data.as_matrix()
+    DCM = data[:, [0,1,2, 4,5,6, 8,9,10]]
+    pos = data[:,[3, 7, 11]]
+    return DCM, pos, pos2vel(pos)
 
 def getLabels(seq):
     DCM, pos, vel = readAttPosData(seq)

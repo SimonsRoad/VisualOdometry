@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from PrepData import *
-from Model import *
+from Model_CNN import *
 import time
 import sys
 import cv2
@@ -63,10 +63,9 @@ def runTestSeq(m,seq):
     print 'rmse=%f' %(rmse_pos)
 
     np.savetxt('Results/Pred_Data/seq'+str(seq)+'_vel.txt', pred_vel)
-    np.savetxt('Results/Pred_Data/seq'+str(seq)+'_pos.txt', pred_pos)
 
     fig = plt.figure()
-    plt.plot(vel, 'r')
+    plt.plot(vel, 'ro')
     plt.plot(pred_vel, 'b')
     #plt.show()
     fig.savefig('Results/Images/seq' + str(seq) + '_vel.png')
@@ -75,7 +74,7 @@ def runTestSeq(m,seq):
     pred_pos = vel2pos(pred_vel)
     fig = plt.figure()
     plt.plot(pos[:,0], pos[:,2], 'ro')
-    plt.plot(pred_pos[:,0], pred_pos[:,2], 'b.')
+    plt.plot(pred_pos[:,0], pred_pos[:,2], 'b')
     if seq == 4:
         plt.xlim((-200, 200))
     if seq == 6:
