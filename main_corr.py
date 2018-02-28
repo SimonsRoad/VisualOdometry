@@ -1,7 +1,7 @@
 from PrepData_post import *
 import matplotlib.pyplot as plt
 import numpy as np
-from PosQ import *
+from Model_PosQ import *
 import sys
 
 
