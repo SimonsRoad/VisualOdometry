@@ -4,9 +4,9 @@ Using convolutional neural network, the velocity of the camera is estimated. Aft
 
 
 [Click for Youtube video:
-<ul>
 <img src="https://github.com/ElliotHYLee/OpticalFlow2VelocityEstimation/blob/master/Images/Capture.JPG">](https://youtu.be/-t8VCICzGD0){:target="_blank"}
-</ul>
+
+
 ## ToDo
 1. Mapping
 
