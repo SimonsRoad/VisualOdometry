@@ -33,17 +33,12 @@ python main.py 0
 
 ## Quick Overview of The Results
 
-- seq: 0, data len: 4540 mse=0.231886   - TRAIN
-- seq: 1, data len: 1100 mse=0.611562
-- seq: 2, data len: 4660 mse=0.225988   - TRAIN
-- seq: 3, data len: 800  mse=0.726049
-- seq: 4, data len: 270  mse=1.161688
-- seq: 5, data len: 2760 mse=0.381209
-- seq: 6, data len: 1100 mse=0.418605
-- seq: 7, data len: 1100 mse=0.461195
-- seq: 8, data len: 4070 mse=0.260375   - TRAIN
-- seq: 9, data len: 1590 mse=0.504771   - TRAIN
-- seq: 10, data len: 1200 mse=0.632616
+<ul>
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr5.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr8.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr9.png" width="400">
+<img src="https://github.com/ElliotHYLee/VisualOdometry/blob/master/Results/Images/seq_corr10.png" width="400">
+</ul>
 
 ## References(current & future)
 
