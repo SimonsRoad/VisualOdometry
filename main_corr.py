@@ -87,9 +87,9 @@ def test_real():
             pos_corr = model.predict(input)*1000
             pos_corr_list[i,:] = pos_corr
             if i%200 == 0:
-                print i
+                print (i)
         finalPos = pos_corr_list
-        print finalPos.shape
+        print (finalPos.shape)
 
         plt.close('all')
         plt.figure()
@@ -101,8 +101,6 @@ def test_real():
         plt.savefig('Results/Images/seq_corr' + str(seq))
         #np.savetxt('data/seq_constQ' + str(seq) + '.txt', finalPos)
         #plt.show()
-
-
 
 
 if __name__=='__main__':

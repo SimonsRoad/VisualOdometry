@@ -10,18 +10,18 @@ import time
 def runTrainCNN():
     fn = getModel(360, 640)
     fn.load_weights('Weights/b3_evenlight.h5')
-    of, vel, pos, DCM, img1, img2 = getMergedData([0, 2, 6, 4])
+    of, vel, pos, DCM, img1, img2 = getMergedData([4])
     earlystop = EarlyStopping(monitor='loss', min_delta=10**-5, patience=5, verbose=1, mode='auto')
     callbacks_list = [earlystop]
     history = fn.fit([img1, img2, DCM], vel, epochs=10, batch_size=32, verbose=1,  shuffle=True, callbacks=callbacks_list)
     fn.save_weights('Weights/b3_evenlight.h5')
-    print 'done'
+    print ('done')
 
 
 def runTest():
     m = getModel(360, 640)
     m.load_weights('Weights/b3_evenlight.h5')
-    runTestSeq(m,4)
+    runTestSeq(m,5)
     # for seq in range(8,11):
     #     runTestSeq(m,seq)
 
@@ -42,31 +42,31 @@ def runTestSeq(m,seq):
         pred_vel_list.append(pred)
         i += step
         if i%100 == 0:
-            print i
+            print (i)
     meanProcTime = np.array(timeList)
     meanProcTime = np.mean(meanProcTime)
-    print 'time elapsed: %f' %(meanProcTime)
+    print ('time elapsed: %f'  %meanProcTime)
     pred_vel = np.array(pred_vel_list)
-    print pred_vel.shape
+    print (pred_vel.shape)
     pred_vel = np.reshape(pred_vel, (vel.shape[0], 3))
     #pred_vel = pred_vel[:,3:]
     diff = vel-pred_vel
 
-    print pred_vel.shape
-    print np.mean(diff)
+    print (pred_vel.shape)
+    print (np.mean(diff))
 
     pred_pos = pos2vel(pred_vel)
     rmse_vel = np.sqrt((np.asarray((np.subtract(pred_vel, vel))) ** 2).mean())
-    print 'rmse=%f' %(rmse_vel)
+    print ('rmse=%f' %(rmse_vel))
     rmse_pos = np.sqrt((np.asarray((np.subtract(pred_pos, pos))) ** 2).mean())
-    print 'rmse=%f' %(rmse_pos)
+    print ('rmse=%f' %(rmse_pos))
 
     np.savetxt('Results/Pred_Data/seq'+str(seq)+'_vel.txt', pred_vel)
 
     fig = plt.figure()
     plt.plot(vel, 'ro')
     plt.plot(pred_vel, 'b')
-    #plt.show()
+    plt.show()
     fig.savefig('Results/Images/seq' + str(seq) + '_vel.png')
 
 
