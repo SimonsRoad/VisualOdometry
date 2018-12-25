@@ -4,7 +4,6 @@ import numpy as np
 from Model_PosQ import *
 import sys
 
-
 def getSeqInput(x,y, T):
     input = None
     offset = T-1
@@ -62,6 +61,8 @@ def test_quick():
         meas, = plt.plot(measPos[:,0], measPos[:,2], 'cyan')
         corr, = plt.plot(finalPos[:,3], finalPos[:,5], 'g')
         plt.legend([gt, pr, meas, corr], ['Ground Truth', 'Predicted', 'Measured', 'Corrected'])
+        plt.xlabel('Distance, meters')
+        plt.ylabel('Distance, meters')
         plt.show()
 
 
@@ -98,8 +99,12 @@ def test_real():
         meas, = plt.plot(measPos[:,0], measPos[:,2], 'cyan')
         corr, = plt.plot(finalPos[:,3], finalPos[:,5], 'g')
         plt.legend([gt, pr, meas, corr], ['Ground Truth', 'Predicted', 'Measured', 'Corrected'])
+        plt.xlabel('Distance, meters')
+        plt.ylabel('Distance, meters')
         plt.savefig('Results/Images/seq_corr' + str(seq))
-        #np.savetxt('data/seq_constQ' + str(seq) + '.txt', finalPos)
+
+        np.savetxt('Results/corr_data/seq_measPos' + str(seq) + '.txt', measPos)
+        np.savetxt('Results/corr_data/seq_corrPos' + str(seq) + '.txt', finalPos)
         #plt.show()
 
 

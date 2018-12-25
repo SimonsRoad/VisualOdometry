@@ -2,3 +2,5 @@
 *.npy
 *.pyc
 *.h5
+*.png
+*.jpg
