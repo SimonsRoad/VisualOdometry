@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import os, os.path
 import cv2
 
@@ -55,13 +55,61 @@ def getMergedData(seqList):
 
     return velList_gt, posList_gt, velList_pr, posList_pr
 
-if __name__ == '__main__':
-    vel_gt, pos_gt, vel_pr, pos_pr = getMergedData([0,2,4,6])
+def getSeqInput(x,y, T):
+    input = None
+    label = None
+    offset = T-1
+    zeropads = np.zeros((offset, x.shape[1]))
+    #x = np.concatenate([zeropads, x], axis=0)
+    for i in range(0, x.shape[0]-offset):
+        temp = np.reshape(x[i:i+T, :], (1, -1, 6))
+        temp2 = np.reshape(y[i:i+T, :], (1, -1, 6))
+        input = temp if input is None else np.concatenate([input, temp], axis=0)
+        label = temp2 if label is None else np.concatenate([label, temp2], axis=0)
+    # label = y[0:y.shape[0],:]
+    # label = np.concatenate([np.zeros((label.shape[0],3)), label], axis=1)
+    return input, label
 
-    print vel_gt.shape
-    print pos_gt.shape
-    print vel_pr.shape
-    print pos_pr.shape
+def getSeqData(seq, T):
+    DCM, pos, vel = readGT(seq)
+    vel_p, pos_p = readPred(seq)
+    seq_input, seq_label = getSeqInput(vel_p, vel, T)
+    return seq_input, seq_label
+
+def getSeqData2(seq, T):
+    DCM, pos, vel = readGT(seq)
+    vel_p, pos_p = readPred(seq)
+    measPos = pos + (np.random.rand(pos.shape[0], 3)-0.5)*2
+    pred = np.concatenate([measPos, vel_p], axis=1)
+    gt = np.concatenate([pos, vel], axis=1)
+    seq_input, seq_label = getSeqInput(pred, gt, T)
+    return seq_input, seq_label
+
+def getMergedSeqData(seqList, T):
+    x_list = None
+    y_list = None
+
+    for seq in seqList:
+        print(T)
+        x, y = getSeqData2(seq, T)
+        print(x.shape)
+        x_list = x if x_list is None else np.concatenate([x_list, x], axis=0)
+        y_list = y if y_list is None else np.concatenate([y_list, y], axis=0)
+    return x_list, y_list
+
+if __name__ == '__main__':
+    DCM, pos, vel = readGT(0)
+    vel_p, pos_p = readPred(0)
+    plt.figure()
+    plt.plot(vel_p, 'b')
+    plt.plot(vel, 'r.', markersize=1)
+
+    plt.show()
+
+    # print vel_gt.shape
+    # print pos_gt.shape
+    # print vel_pr.shape
+    # print pos_pr.shape
 
 
 

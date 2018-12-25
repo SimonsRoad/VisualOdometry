@@ -1,5 +1,5 @@
 from keras.models import Model, Sequential
-from keras.layers import Input, Dropout, Dense, Conv2D, Flatten, Merge, Activation, Conv2DTranspose, concatenate, Flatten
+from keras.layers import *
 from keras.layers.advanced_activations import LeakyReLU, PReLU, ELU
 import keras.backend as K
 from keras.optimizers import RMSprop, Adam

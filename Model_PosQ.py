@@ -6,6 +6,9 @@ from keras import backend as K
 import numpy as np
 from keras.optimizers import Adam
 
+
+
+
 def getCol(i, tensor):
     col = tensor[:,i]
     col = K.reshape(col, (-1,1))

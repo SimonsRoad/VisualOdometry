@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 #import matplotlib.pyplot as plt
 import os, os.path
-import cv2
 import time
 
 def pos2vel(pos):
@@ -59,7 +58,7 @@ def getMergedData(seqList):
     totalImgNumber = 0
     d1,d2 = 0,0
     for seq in seqList:
-        print 'Reading seq ' + str(seq)
+        print ('Reading seq ' + str(seq))
         of, vel, pos, DCM = getData(seq)
         img1, img2 = getImage(seq)
         totalImgNumber += img1.shape[0]
@@ -69,9 +68,9 @@ def getMergedData(seqList):
         DCMList = DCM if DCMList is None else np.concatenate([DCMList, DCM], axis=0)
         imgList1.append(img1)
         imgList2.append(img2)
-        print 'Done reading seq ' + str(seq)
+        print ('Done reading seq ' + str(seq))
 
-    print '%d data points are being prepared...' %(totalImgNumber)
+    print ('%d data points are being prepared...' %(totalImgNumber))
 
     imgTotal1 = np.ndarray(shape=(totalImgNumber,360,640,3), dtype='float16')
     imgTotal2 = np.ndarray(shape=(totalImgNumber,360,640,3), dtype='float16')
@@ -83,23 +82,23 @@ def getMergedData(seqList):
         imgNum = img1.shape[0]
         start = end
         end = start+imgNum
-        print 'changing data type and concatenating for seq %d ...' %(seqList[i])
+        print ('changing data type and concatenating for seq %d ...' %(seqList[i]))
         imgTotal1[start:end,:,:,:] = img1.astype('float16')/255.0-0.5
         imgTotal2[start:end,:,:,:] = img2.astype('float16')/255.0-0.5
 
-    print 'Done data prep.'
+    print ('Done data prep.')
     return ofList, velList, posList, DCMList, imgTotal1, imgTotal2
 
 if __name__ == '__main__':
     start = time.time()
-    print 'starting...'
+    print ('starting...')
     of, vel, pos, DCM, img1, img2 = getMergedData([0,1,2, 4,8])
 
-    print of.shape
-    print vel.shape
-    print DCM.shape
-    print img1.shape
-    print img2.shape
+    # print of.shape
+    # print vel.shape
+    # print DCM.shape
+    # print img1.shape
+    # print img2.shape
 
     end = time.time()
-    print 'time elapsed: %f' %(end - start)
+    #print 'time elapsed: %f' %(end - start)
